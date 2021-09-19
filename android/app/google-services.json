@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "629661132707",
+    "firebase_url": "https://loginproj-7de66.firebaseio.com",
+    "project_id": "loginproj-7de66",
+    "storage_bucket": "loginproj-7de66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629661132707:android:46c2d5648b64c4e5fb9c16",
+        "android_client_info": {
+          "package_name": "com.excelitai.i_school"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629661132707-phpofinun0bvjsij8p3npiapg6rhctq7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlvQHhmQmGxpUjPlekY3_GqW9KOBCMBig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629661132707-phpofinun0bvjsij8p3npiapg6rhctq7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
