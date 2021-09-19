@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:i_school/screens/login_page.dart';
-import 'package:i_school/screens/login_page.dart';
-import 'package:i_school/screens/registration_page.dart';
+// import 'package:i_school/screens/login_page.dart';
+// import 'package:i_school/screens/registration_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -16,6 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffeae2b7),
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -23,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(10.0),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Image.asset(
                 'images/sms2.png',
@@ -36,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.orangeAccent),
+                    color: Colors.black),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -45,7 +46,8 @@ class _MyHomePageState extends State<MyHomePage> {
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   shape: StadiumBorder(),
-                  side: BorderSide(width: 3, color: Colors.teal),
+                  //side: BorderSide(width: 3, color: Colors.orange),
+                  backgroundColor: Colors.orange,
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -53,7 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     MaterialPageRoute(builder: (context) => LoginScreen()),
                   );
                 },
-                child: Text('Student'),
+                child: Text(
+                  'Student',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
               SizedBox(
                 height: 10.0,
@@ -61,7 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   shape: StadiumBorder(),
-                  side: BorderSide(width: 3, color: Colors.teal),
+                  // side: BorderSide(width: 3, color: Colors.orange),
+                  backgroundColor: Colors.orange,
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -69,7 +75,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     MaterialPageRoute(builder: (context) => LoginScreen()),
                   );
                 },
-                child: Text('Teacher'),
+                child: Text(
+                  'Teacher',
+                  style: TextStyle(color: Colors.black),
+                ),
               )
             ],
           ),

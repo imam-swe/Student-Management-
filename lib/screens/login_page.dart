@@ -26,27 +26,26 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.orange,
         toolbarHeight: 70,
         title: Text('Login'),
         centerTitle: true,
       ),
       body: Stack(
         children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-                gradient:
-                    LinearGradient(colors: [Colors.black, Colors.black54])),
-          ),
+          // Container(
+          //   decoration: BoxDecoration(
+          //       gradient:
+          //           LinearGradient(colors: [Colors.black, Colors.black54])),
+          // ),
           Center(
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Container(
-                //color: Color(0xffD4F1F4),
+                color: Color(0xfffde2e4),
                 height: MediaQuery.of(context).size.height,
                 // width: MediaQuery.of(context).size.width * 0.5,
                 padding: EdgeInsets.all(16),
@@ -78,10 +77,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 padding: const EdgeInsets.only(top: 15.0),
                                 child: const Icon(Icons.lock),
                               ),
-                              // suffixIcon: const Padding(
-                              //   padding: const EdgeInsets.only(top: 15.0),
-                              //   child: const Icon(Icons.visibility_off),
-                              // ),
                               suffixIcon: InkWell(
                                 onTap: _togglePasswordView,
                                 child: Icon(
@@ -125,9 +120,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.blue,
                           textColor: Colors.white,
                         ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
                         _createAccountLabel(),
 
-                        //_loginWithButton(),
+                        _loginWithButton(),
                       ],
                     ),
                   ),
@@ -136,11 +134,6 @@ class _LoginScreenState extends State<LoginScreen> {
               color: Colors.white,
             ),
           ),
-          // Row(
-          //   children: [
-          //     Text('sdfgh', style: TextStyle(),),
-          //   ],
-          // ),
         ],
       ),
     );
@@ -186,19 +179,26 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SignInButton(
-            Buttons.Google,
-            text: "Sign up with Google",
-            onPressed: () {},
+          SizedBox(
+            height: 20.0,
           ),
           SignInButton(
-            Buttons.Facebook,
-            text: "Sign up with Facebook",
+            Buttons.GoogleDark,
+            // text: "Sign in with Google",
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
             onPressed: () {},
           ),
+          SizedBox(
+            height: 10.0,
+          ),
           SignInButton(
-            Buttons.GitHub,
-            text: "Sign up with GitHub",
+            Buttons.FacebookNew,
+            // text: "Sign in with Facebook",
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
             onPressed: () {},
           )
         ],
