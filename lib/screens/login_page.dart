@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:i_school/screens/homepage.dart';
 import 'package:i_school/screens/registration_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
@@ -45,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Container(
-                color: Color(0xfffde2e4),
+                color: Color(0xffeae2b7),
                 height: MediaQuery.of(context).size.height,
                 // width: MediaQuery.of(context).size.width * 0.5,
                 padding: EdgeInsets.all(16),
@@ -146,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Don\'t have an account ?',
+            'Or',
             style: TextStyle(
                 fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black),
           ),

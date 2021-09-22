@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_school/screens/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignupScreen extends StatefulWidget {
   static const routeName = '/signup';
@@ -9,13 +10,15 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
-
+  final auth = FirebaseAuth.instance;
+  late String name;
   late String email;
   late String password;
+  late String confirmpass;
 
-  TextEditingController _passwordController = new TextEditingController();
+  final TextEditingController _passwordController = new TextEditingController();
+  final TextEditingController _confirmPass = new TextEditingController();
 
-  get auth => null;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +64,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             }
                             return null;
                           },
-                          onSaved: (value) {},
+                          onChanged: (value) {
+                            name = value;
+                          },
                         ),
 
                         //Email
@@ -86,7 +91,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           controller: _passwordController,
                           validator: (value) {
                             if (value!.isEmpty ||
-                                value.length <= 7 ||
+                                value.length <= 3 ||
                                 value.length >= 50) {
                               return 'invalid password';
                             }
@@ -102,14 +107,20 @@ class _SignupScreenState extends State<SignupScreen> {
                           decoration:
                               InputDecoration(labelText: 'Confirm Password'),
                           obscureText: true,
+                          controller: _confirmPass,
                           validator: (value) {
-                            if (value!.isEmpty ||
-                                value != _passwordController.text) {
-                              return 'invalid password';
+                            if (value!.isEmpty) {
+                              return 'Password Empty';
+                            }
+                            //return null;
+                            if (value != _passwordController) {
+                              return "Password Not Match";
                             }
                             return null;
                           },
-                          onSaved: (value) {},
+                          onChanged: (value) {
+                            confirmpass = value;
+                          },
                         ),
 
                         SizedBox(
@@ -122,7 +133,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             //_submit();
                             await auth
                                 .createUserWithEmailAndPassword(
-                                    email: email, password: password)
+                                    //name: name,
+                                    email: email,
+                                    password: password)
                                 .then((value) => Navigator.push(
                                     context,
                                     MaterialPageRoute(

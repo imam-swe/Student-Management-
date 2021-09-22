@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:i_school/screens/login_page.dart';
-// import 'package:i_school/screens/login_page.dart';
-// import 'package:i_school/screens/registration_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
