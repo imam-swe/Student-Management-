@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:i_school/screens/login_page.dart';
+import 'package:i_school/screens/signinScreens/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:i_school/users/userDetection.dart';
+// import 'package:firebase_core/firebase_core.dart';
 
 class SignupScreen extends StatefulWidget {
+  late final bool users;
+  SignupScreen(bool users) {
+    this.users = users;
+  }
   static const routeName = '/signup';
   @override
   _SignupScreenState createState() => _SignupScreenState();
@@ -10,6 +16,11 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
+  late final bool users;
+  SignupScreen(bool users) {
+    this.users = users;
+  }
+
   final auth = FirebaseAuth.instance;
   late String name;
   late String email;
@@ -109,7 +120,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           obscureText: true,
                           controller: _confirmPass,
                           validator: (value) {
-                            if (value!.isEmpty) {
+                            if (value!.isEmpty || value.length <= 3) {
                               return 'Password Empty';
                             }
                             //return null;
@@ -139,7 +150,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                 .then((value) => Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => LoginScreen())));
+                                        builder: (context) =>
+                                            LoginScreen(users))));
                           },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),

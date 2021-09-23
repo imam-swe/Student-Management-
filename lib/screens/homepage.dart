@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:i_school/screens/login_page.dart';
+// import 'package:i_school/users/userDetection.dart';
+import 'package:i_school/screens/signinScreens/login_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -11,6 +12,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool users = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +50,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   backgroundColor: Colors.orange,
                 ),
                 onPressed: () {
+                  users = true;
+                  print(users);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                    MaterialPageRoute(builder: (context) => LoginScreen(users)),
                   );
                 },
                 child: Text(
@@ -68,9 +72,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   backgroundColor: Colors.orange,
                 ),
                 onPressed: () {
+                  users = false;
+                  print(users);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                    MaterialPageRoute(builder: (context) => LoginScreen(users)),
                   );
                 },
                 child: Text(

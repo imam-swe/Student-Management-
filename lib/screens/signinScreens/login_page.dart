@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:i_school/screens/homepage.dart';
-import 'package:i_school/screens/registration_page.dart';
+import 'package:i_school/screens/signinScreens/registration_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:i_school/screens/userScreens/studentpage.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
+  late final bool users;
+  LoginScreen(bool users) {
+    this.users = users;
+  }
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginScreenState createState() => _LoginScreenState(users);
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
+
   late String email;
   late String password;
+  late final bool users;
+  _LoginScreenState(bool users) {
+    this.users = users;
+  }
   bool _isHidden = true;
 
-  get auth => null;
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   void _togglePasswordView() {
     setState(() {
@@ -36,11 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       body: Stack(
         children: <Widget>[
-          // Container(
-          //   decoration: BoxDecoration(
-          //       gradient:
-          //           LinearGradient(colors: [Colors.black, Colors.black54])),
-          // ),
           Center(
             child: Card(
               shape: RoundedRectangleBorder(
@@ -103,17 +106,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         // ignore: deprecated_member_use
                         RaisedButton(
-                          child: Text('submit'),
+                          child: Text('login'),
                           onPressed: () async {
                             //_submit();
                             await auth.signInWithEmailAndPassword(
                                 email: email, password: password);
+
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MyHomePage(
-                                          title: '',
-                                        )),
+                                  builder: (context) =>
+                                      Student_page(widget.toString()),
+                                ),
                                 (route) => false);
                           },
                           shape: RoundedRectangleBorder(
@@ -148,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Or',
+            'Dont have account?',
             style: TextStyle(
                 fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black),
           ),
@@ -157,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SignupScreen()),
+                MaterialPageRoute(builder: (context) => SignupScreen(users)),
               );
 
               // Navigator.pushNamedAndRemoveUntil(context, (context)=>ChatRoom(), (route) => false)
