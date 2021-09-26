@@ -22,16 +22,16 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage('assets/images/profile.jpg'),
+                image: AssetImage('images/smsst.png'),
               ),
             ),
           ),
           Text(
-            "Rapid Tech",
+            "Test1",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           Text(
-            "info@rapidtech.dev",
+            "info@test1.st",
             style: TextStyle(
               color: Colors.grey[200],
               fontSize: 14,

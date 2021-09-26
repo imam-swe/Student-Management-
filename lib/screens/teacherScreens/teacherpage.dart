@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:i_school/screens/drawerScreens/header_drawer.dart';
+import 'package:i_school/screens/teacherScreens/drawer_tr.dart';
 
 class Teacher_page extends StatefulWidget {
-  const Teacher_page({Key? key}) : super(key: key);
+  const Teacher_page(String string, {Key? key}) : super(key: key);
 
   @override
   _Teacher_pageState createState() => _Teacher_pageState();
@@ -28,7 +28,9 @@ class _Teacher_pageState extends State<Teacher_page> {
             ),
           ),
         ),
-        //body: _build_Body(status),
+        body: Container(
+          child: Text('This is the teacher portal'),
+        ),
       ),
     );
   }
@@ -41,12 +43,12 @@ class _Teacher_pageState extends State<Teacher_page> {
       child: Column(
         // shows the list of menu drawer
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Text('Drawer Header'),
-          ),
+          // const DrawerHeader(
+          //   decoration: BoxDecoration(
+          //     color: Colors.blue,
+          //   ),
+          //   child: Text('Drawer Header'),
+          // ),
           ListTile(
             title: const Text('Item 1'),
             onTap: () {

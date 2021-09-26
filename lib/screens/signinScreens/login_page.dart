@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:i_school/screens/signinScreens/registration_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:i_school/screens/userScreens/studentpage.dart';
+import 'package:i_school/screens/studentScreens/studentpage.dart';
+import 'package:i_school/screens/teacherScreens/teacherpage.dart';
+import 'package:i_school/services/authService.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
@@ -95,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             password = value;
                           },
                           validator: (value) {
-                            if (value!.isEmpty || value.length <= 7) {
+                            if (value!.isEmpty || value.length <= 5) {
                               return 'invalid password';
                             }
                             return "Successfully Logged In!";
@@ -104,7 +106,52 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 10,
                         ),
-                        // ignore: deprecated_member_use
+
+//                         ElevatedButton(
+//                           onPressed: () async {
+//                             setState(() async {
+//                               try {
+//                                 if (email != "admin@a.com") {
+//                                   await AuthService()
+//                                       .signInWithEmailAndPassword(
+//                                           email, password)
+//                                       .then((value) => print("Signed in"));
+// //                            await auth.signInWithEmailAndPassword(email: email, password: password);
+//                                   if (users == true) {
+//                                     Navigator.pushNamed(context, '/techer');
+//                                   } else if (users == false) {
+//                                     //Navigator.pushNamed(context, '/student');
+//                                     //Navigator.push(context, MaterialPageRoute(builder: (context)=>Student_page("p")));
+//                                     Navigator.pushAndRemoveUntil(
+//                                         context,
+//                                         MaterialPageRoute(
+//                                             builder: (context) =>
+//                                                 Student_page("p")),
+//                                         (route) => false);
+//                                   } else {
+//                                     Navigator.pushNamed(context, '/admin');
+//                                   }
+//                                 } else {
+//                                   await AuthService()
+//                                       .signInWithEmailAndPassword(
+//                                           email, password)
+//                                       .then((value) => print("Signed in"));
+//                                   Navigator.pushAndRemoveUntil(
+//                                       context,
+//                                       MaterialPageRoute(
+//                                           builder: (context) => AdminPage()),
+//                                       (route) => false);
+//                                 }
+//                                 //Navigator.pushNamed(context, '/admin');
+//                               } catch (e) {
+//                                 print(e);
+//                               }
+//                             });
+//                           },
+//                           child: Text("Log In"),
+//                         ),
+
+                        //ignore: deprecated_member_use
                         RaisedButton(
                           child: Text('login'),
                           onPressed: () async {
@@ -112,13 +159,30 @@ class _LoginScreenState extends State<LoginScreen> {
                             await auth.signInWithEmailAndPassword(
                                 email: email, password: password);
 
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      Student_page(widget.toString()),
-                                ),
-                                (route) => false);
+                            // Navigator.pushAndRemoveUntil(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //       builder: (context) =>
+                            //           Student_page(widget.toString()),
+                            //     ),
+                            //     (route) => false);
+                            if (users == true) {
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        Student_page(widget.toString()),
+                                  ),
+                                  (route) => false);
+                            } else {
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        Teacher_page(widget.toString()),
+                                  ),
+                                  (route) => false);
+                            }
                           },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
