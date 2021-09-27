@@ -1,3 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:i_school/screens/teacherScreens/drawer_tr.dart';
 
@@ -9,6 +13,8 @@ class Teacher_page extends StatefulWidget {
 }
 
 class _Teacher_pageState extends State<Teacher_page> {
+  late String notice;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,8 +34,46 @@ class _Teacher_pageState extends State<Teacher_page> {
             ),
           ),
         ),
-        body: Container(
-          child: Text('This is the teacher portal'),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Notice',
+                  icon: const Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: const Icon(Icons.notification_add),
+                  ),
+                ),
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                onChanged: (input) {
+                  setState(
+                    () {
+                      notice = input;
+                    },
+                  );
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              FlatButton(
+                color: Colors.blue,
+                child: Text("post"),
+                onPressed: () {
+                  setState(() async {
+                    firestore.collection('i-teacher').add(
+                      {
+                        'Notice': notice,
+                      },
+                    );
+                  });
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

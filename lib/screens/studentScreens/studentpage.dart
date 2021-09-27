@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:i_school/screens/studentScreens/drawer_st.dart';
+import 'package:i_school/screens/teacherScreens/teacherpage.dart';
 
 // ignore: must_be_immutable
 class Student_page extends StatefulWidget {
@@ -59,33 +60,35 @@ class _Student_pageState extends State<Student_page> {
                 children: [
                   TableRow(children: [
                     Column(children: [
-                      Text('Website', style: TextStyle(fontSize: 20.0))
+                      Text('Time', style: TextStyle(fontSize: 20.0))
                     ]),
                     Column(children: [
-                      Text('Tutorial', style: TextStyle(fontSize: 20.0))
+                      Text('Class', style: TextStyle(fontSize: 20.0))
                     ]),
                     Column(children: [
-                      Text('Review', style: TextStyle(fontSize: 20.0))
+                      Text('Section', style: TextStyle(fontSize: 20.0))
                     ]),
                   ]),
                   TableRow(children: [
-                    Column(children: [Text('Javatpoint')]),
-                    Column(children: [Text('Flutter')]),
-                    Column(children: [Text('5*')]),
+                    Column(children: [Text('09.00am-11.00am')]),
+                    Column(children: [Text('Flutter Basic')]),
+                    Column(children: [Text('Section: A')]),
                   ]),
                   TableRow(children: [
-                    Column(children: [Text('Javatpoint')]),
-                    Column(children: [Text('MySQL')]),
-                    Column(children: [Text('5*')]),
+                    Column(children: [Text('12.00pm-01.00pm')]),
+                    Column(children: [Text('Fluter Firebase')]),
+                    Column(children: [Text('Section: B')]),
                   ]),
                   TableRow(children: [
-                    Column(children: [Text('Javatpoint')]),
-                    Column(children: [Text('ReactJS')]),
-                    Column(children: [Text('5*')]),
+                    Column(children: [Text('02.00pm-04.00pm')]),
+                    Column(children: [Text('Fluter API')]),
+                    Column(children: [Text('Section: C')]),
                   ]),
                 ],
               ),
             ),
+            //Show notice board
+            Container(),
           ],
         ),
       ),

@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:i_school/screens/studentScreens/studentpage.dart';
 import 'package:i_school/screens/teacherScreens/teacherpage.dart';
-import 'package:i_school/services/authService.dart';
+//import 'package:i_school/services/authService.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
