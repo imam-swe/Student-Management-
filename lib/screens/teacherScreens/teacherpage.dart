@@ -13,8 +13,10 @@ class Teacher_page extends StatefulWidget {
 }
 
 class _Teacher_pageState extends State<Teacher_page> {
-  late String notice;
+  //late String notice;
+  TextEditingController noticecontroller = TextEditingController();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,7 +40,8 @@ class _Teacher_pageState extends State<Teacher_page> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextFormField(
+              TextField(
+                controller: noticecontroller,
                 decoration: InputDecoration(
                   labelText: 'Notice',
                   icon: const Padding(
@@ -48,25 +51,28 @@ class _Teacher_pageState extends State<Teacher_page> {
                 ),
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
-                onChanged: (input) {
-                  setState(
-                    () {
-                      notice = input;
-                    },
-                  );
-                },
+                // onChanged: (input) {
+                //   setState(
+                //     () {
+                //       notice = input;
+                //     },
+                //   );
+                // },
               ),
               SizedBox(
                 height: 20,
               ),
               FlatButton(
                 color: Colors.blue,
-                child: Text("post"),
+                child: Text("Post"),
                 onPressed: () {
                   setState(() async {
-                    firestore.collection('i-teacher').add(
+                    // firestore.collection('Test').add({
+                    //   "UserData" = notice,
+                    // });
+                    firestore.collection('Test').add(
                       {
-                        'Notice': notice,
+                        'Notice': noticecontroller.text,
                       },
                     );
                   });

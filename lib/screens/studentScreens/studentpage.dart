@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:i_school/screens/studentScreens/drawer_st.dart';
-import 'package:i_school/screens/teacherScreens/teacherpage.dart';
 
 // ignore: must_be_immutable
 class Student_page extends StatefulWidget {
@@ -87,8 +87,46 @@ class _Student_pageState extends State<Student_page> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 20.0,
+            ),
             //Show notice board
-            Container(),
+            Container(
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection("Test")
+                            .orderBy(timeDilation)
+                            .snapshots(),
+                        builder:
+                            (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                          if (!snapshot.hasData) {
+                            return Text("No Data");
+                          }
+                          return ListView(
+                            // scrollDirection: Axis.vertical,
+                            // physics: ScrollPhysics(),
+                            // padding: EdgeInsets.only(top: 24),
+                            children: snapshot.data!.docs.map((document) {
+                              Map<String, dynamic> data =
+                                  document.data()! as Map<String, dynamic>;
+                              return Column(
+                                children: [
+                                  Text(data["Notice"].toString()),
+                                ],
+                              );
+                            }).toList(),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
