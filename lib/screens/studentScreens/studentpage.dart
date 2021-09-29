@@ -1,7 +1,9 @@
-//import 'package:flutter/cupertino.dart';
+import 'dart:js';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:i_school/screens/homepage.dart';
 import 'package:i_school/screens/studentScreens/drawer_st.dart';
 
 // ignore: must_be_immutable
@@ -19,32 +21,64 @@ class _Student_pageState extends State<Student_page> {
   _Student_pageState(String? status) {
     this.status = status;
   }
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-          appBar: AppBar(
-            title: Center(child: Text("Student Portal")),
-          ),
-          drawer: Drawer(
-            child: SingleChildScrollView(
-              child: Container(
-                child: Column(
-                  children: [
-                    MyHeaderDrawer(),
-                    MyDrawerList(),
-                  ],
-                ),
+        appBar: AppBar(
+          title: Center(child: Text("Student Portal")),
+        ),
+        drawer: Drawer(
+          child: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  MyHeaderDrawer(),
+                  MyDrawerList(),
+                ],
               ),
             ),
           ),
-          body: _build_Body(status)),
+        ),
+        // body: Padding(
+        //   padding: const EdgeInsets.all(8.0),
+        //   child: Container(
+        //     child: StreamBuilder(
+        //       stream: firestore.collection("Test").snapshots(),
+        //       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        //         if (!snapshot.hasData) {
+        //           return Text("No Data");
+        //         }
+        //         return ListView(
+        //           // scrollDirection: Axis.vertical,
+        //           // physics: ScrollPhysics(),
+        //           // padding: EdgeInsets.only(top: 24),
+        //           children: snapshot.data!.docs.map((document) {
+        //             Map<String, dynamic> data =
+        //                 document.data()! as Map<String, dynamic>;
+        //             return Column(
+        //               children: [
+        //                 Text(data["Notice"].toString()),
+        //                 SizedBox(
+        //                   height: 20,
+        //                 )
+        //               ],
+        //             );
+        //           }).toList(),
+        //         );
+        //       },
+        //     ),
+        //   ),
+        // ),
+        body: _build_Body(),
+      ),
     );
   }
 
-  Widget _build_Body(String? status) {
+  Widget _build_Body() {
     return SingleChildScrollView(
       child: Container(
         child: Column(
@@ -94,35 +128,30 @@ class _Student_pageState extends State<Student_page> {
             Container(
               child: Center(
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      StreamBuilder(
-                        stream: FirebaseFirestore.instance
-                            .collection("Test")
-                            .orderBy(timeDilation)
-                            .snapshots(),
-                        builder:
-                            (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                          if (!snapshot.hasData) {
-                            return Text("No Data");
-                          }
-                          return ListView(
-                            // scrollDirection: Axis.vertical,
-                            // physics: ScrollPhysics(),
-                            // padding: EdgeInsets.only(top: 24),
-                            children: snapshot.data!.docs.map((document) {
-                              Map<String, dynamic> data =
-                                  document.data()! as Map<String, dynamic>;
-                              return Column(
-                                children: [
-                                  Text(data["Notice"].toString()),
-                                ],
-                              );
-                            }).toList(),
+                  child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("Test")
+                        //.orderBy(timeDilation)
+                        .snapshots(),
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (!snapshot.hasData) {
+                        return Text("No Data");
+                      }
+                      return ListView(
+                        // scrollDirection: Axis.vertical,
+                        // physics: ScrollPhysics(),
+                        // padding: EdgeInsets.only(top: 24),
+                        children: snapshot.data!.docs.map((document) {
+                          Map<String, dynamic> data =
+                              document.data()! as Map<String, dynamic>;
+                          return Column(
+                            children: [
+                              Text(data["Notice"].toString()),
+                            ],
                           );
-                        },
-                      ),
-                    ],
+                        }).toList(),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -148,17 +177,40 @@ class _Student_pageState extends State<Student_page> {
           //   child: Text('Drawer Header'),
           // ),
           ListTile(
-            title: const Text('Item 1'),
+            title: const Text('Profile'),
             onTap: () {
               // Update the state of the app.
               // ...
             },
           ),
           ListTile(
-            title: const Text('Item 2'),
+            title: const Text('Result'),
             onTap: () {
               // Update the state of the app.
               // ...
+            },
+          ),
+          ListTile(
+            title: const Text('Routine'),
+            onTap: () {
+              // Update the state of the app.
+              // ...
+            },
+          ),
+          ListTile(
+            title: const Text('ChatRoom'),
+            onTap: () {
+              // Update the state of the app.
+              // ...
+            },
+          ),
+          ListTile(
+            title: const Text('Logout'),
+            onTap: () {
+              // Navigator.pushAndRemoveUntil(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => LoginScreen()),
+              //     (route) => false);
             },
           ),
         ],

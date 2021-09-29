@@ -10,9 +10,8 @@ class Splash extends StatelessWidget {
           ? const Color(0xffeae2b7).withOpacity(1.0)
           : const Color(0x00042a49).withOpacity(1.0),
       body: Center(
-          child: lightMode
-              ? Image.asset('images/sms2.png')
-              : Image.asset('images/sms1.png')),
+        child: Image.asset('images/sms2.png'),
+      ),
     );
   }
 }

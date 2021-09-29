@@ -1,7 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:i_school/screens/teacherScreens/drawer_tr.dart';
 
@@ -100,14 +99,35 @@ class _Teacher_pageState extends State<Teacher_page> {
           //   child: Text('Drawer Header'),
           // ),
           ListTile(
-            title: const Text('Item 1'),
+            title: const Text('Profile'),
             onTap: () {
               // Update the state of the app.
               // ...
             },
           ),
           ListTile(
-            title: const Text('Item 2'),
+            title: const Text('Notice Board'),
+            onTap: () {
+              // Update the state of the app.
+              // ...
+            },
+          ),
+          ListTile(
+            title: const Text('Notice'),
+            onTap: () {
+              // Update the state of the app.
+              // ...
+            },
+          ),
+          ListTile(
+            title: const Text('ChatRoom'),
+            onTap: () {
+              // Update the state of the app.
+              // ...
+            },
+          ),
+          ListTile(
+            title: const Text('Logout'),
             onTap: () {
               // Update the state of the app.
               // ...

@@ -55,10 +55,10 @@ class AuthService {
     }
   }
 
-  Future signInWithEmailAndPassword(String email, String passWord) async {
-    final credetial = await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: passWord);
-  }
+  // Future signInWithEmailAndPassword(String email, String passWord) async {
+  //   final credetial = await _firebaseAuth.signInWithEmailAndPassword(
+  //       email: email, password: passWord);
+  // }
 
 //  User? _userFromFirebase(auth.User? user) {
 //    if (user == null) {
