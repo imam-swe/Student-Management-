@@ -1,5 +1,5 @@
 // ignore_for_file: deprecated_member_use
-
+import 'package:i_school/screens/homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:i_school/screens/teacherScreens/drawer_tr.dart';
@@ -129,8 +129,12 @@ class _Teacher_pageState extends State<Teacher_page> {
           ListTile(
             title: const Text('Logout'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          MyHomePage(title: 'Student Management System')),
+                  (route) => false);
             },
           ),
         ],

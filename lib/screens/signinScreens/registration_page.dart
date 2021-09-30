@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:i_school/screens/signinScreens/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:i_school/screens/studentScreens/student_info.dart';
 // import 'package:i_school/users/userDetection.dart';
 // import 'package:firebase_core/firebase_core.dart';
 
@@ -65,20 +66,20 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: <Widget>[
-                        //Name
-                        TextFormField(
-                          decoration: InputDecoration(labelText: 'Name'),
-                          keyboardType: TextInputType.name,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter your name!';
-                            }
-                            return null;
-                          },
-                          onChanged: (value) {
-                            name = value;
-                          },
-                        ),
+                        // //Name
+                        // TextFormField(
+                        //   decoration: InputDecoration(labelText: 'Name'),
+                        //   keyboardType: TextInputType.name,
+                        //   validator: (value) {
+                        //     if (value!.isEmpty) {
+                        //       return 'Please enter your name!';
+                        //     }
+                        //     return null;
+                        //   },
+                        //   onChanged: (value) {
+                        //     name = value;
+                        //   },
+                        // ),
 
                         //Email
                         TextFormField(
@@ -150,8 +151,27 @@ class _SignupScreenState extends State<SignupScreen> {
                                 .then((value) => Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            LoginScreen(users))));
+                                      builder: (context) =>
+                                          Student_Information(email),
+                                      //LoginScreen(users),
+                                    )));
+                            //     if (users == true) {
+                            //   Navigator.pushAndRemoveUntil(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //         builder: (context) =>
+                            //             Student_Information(),
+                            //       ),
+                            //       (route) => false);
+                            // } else {
+                            //   Navigator.pushAndRemoveUntil(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //         builder: (context) =>
+                            //             Teacher_page(widget.toString()),
+                            //       ),
+                            //       (route) => false);
+                            // }
                           },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),

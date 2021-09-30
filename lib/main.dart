@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:i_school/screens/splash.dart';
 import 'package:i_school/screens/homepage.dart';
 import 'package:flutter/services.dart';
+import 'package:i_school/screens/studentScreens/student_info.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.orange,
             ),
             home: const MyHomePage(title: 'Student Management System'),
+            // home:  const Student_Information(type, email),
           );
         }
       },
