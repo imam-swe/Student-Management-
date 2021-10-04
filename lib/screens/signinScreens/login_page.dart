@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        toolbarHeight: 70,
+        //toolbarHeight: 70,
         title: Text('Login'),
         centerTitle: true,
       ),
@@ -187,8 +187,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          color: Colors.blue,
-                          textColor: Colors.white,
+                          color: Colors.orange,
+                          textColor: Colors.black,
                         ),
                         SizedBox(
                           height: 10.0,

@@ -7,11 +7,12 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:i_school/screens/studentScreens/studentpage.dart';
-import 'package:image_picker/image_picker.dart';
+// import 'package:image_picker/image_picker.dart';
 //import 'package:i_school/screens/homepage.dart';
 
 //import 'package:i_school/screens/signinScreens/registration_page.dart';
 
+// ignore: must_be_immutable
 class Student_Information extends StatefulWidget {
   String email;
   Student_Information(this.email);
@@ -25,22 +26,22 @@ class _Student_InformationState extends State<Student_Information> {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<void> sendDataStudent() async {
-    var imageStorage = FirebaseStorage.instance.ref().child(_image.path);
-    var put = imageStorage.putFile(_image);
+    // var imageStorage = FirebaseStorage.instance.ref().child(_image.path);
+    // var put = imageStorage.putFile(_image);
     //String imgurl = await (await put.onComplete).ref.getDownloadURL();
     //FirebaseAuth auth = await FirebaseAuth.instance.currentUser!();
     FirebaseAuth auth =
         (await FirebaseAuth.instance.currentUser) as FirebaseAuth;
     //await (imgurl);
-    if (_image != null &&
+    if ( //_image != null &&
         _fname != null &&
-        _lname != null &&
-        _class != null &&
-        _roll != null &&
-        _add != null &&
-        _g_name != null &&
-        _g_num != null &&
-        _g_num.length == 11) {
+            _lname != null &&
+            _class != null &&
+            _roll != null &&
+            _add != null &&
+            _g_name != null &&
+            _g_num != null &&
+            _g_num.length == 11) {
       firestore.collection("i-student").doc(auth.tenantId).set({
         'First_Name': _fname,
         'Last_Name': _lname,
@@ -59,38 +60,38 @@ class _Student_InformationState extends State<Student_Information> {
     }
   }
 
-  late File _image;
-  Future cameraImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
+  // late File _image;
+  // Future cameraImage() async {
+  //   final pickedFile =
+  //       await ImagePicker().pickImage(source: ImageSource.camera);
+  //   setState(() {
+  //     if (pickedFile != null) {
+  //       _image = File(pickedFile.path);
+  //     } else {
+  //       print('No image selected.');
+  //     }
+  //   });
+  // }
 
-  Future galleryImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
+  // Future galleryImage() async {
+  //   final pickedFile =
+  //       await ImagePicker().pickImage(source: ImageSource.gallery);
+  //   setState(() {
+  //     if (pickedFile != null) {
+  //       _image = File(pickedFile.path);
+  //     } else {
+  //       print('No image selected.');
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFFe9f518),
+        backgroundColor: Color(0xffeae2b7),
         appBar: AppBar(
-          backgroundColor: Color(0xFFe9f518),
+          backgroundColor: Colors.orange,
           elevation: 0,
           automaticallyImplyLeading: false,
           title: Center(
@@ -105,43 +106,44 @@ class _Student_InformationState extends State<Student_Information> {
         ),
         body: Center(
           child: SingleChildScrollView(
+            //reverse: true,
             child: Column(
               children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  child: _image == null ? Text("") : Image.file(_image),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.01,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FloatingActionButton(
-                      backgroundColor: Colors.white,
-                      onPressed: () {
-                        cameraImage();
-                      },
-                      child: Icon(
-                        Icons.camera_alt_outlined,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.05,
-                    ),
-                    FloatingActionButton(
-                      backgroundColor: Colors.white,
-                      onPressed: () {
-                        galleryImage();
-                      },
-                      child: Icon(
-                        Icons.photo_library_outlined,
-                        color: Colors.black,
-                      ),
-                    )
-                  ],
-                ),
+                // Container(
+                //   height: MediaQuery.of(context).size.height * 0.3,
+                //   // child: _image == null ? Text("") : Image.file(_image),
+                // ),
+                // SizedBox(
+                //   height: MediaQuery.of(context).size.height * 0.01,
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     FloatingActionButton(
+                //       backgroundColor: Colors.white,
+                //       onPressed: () {
+                //         cameraImage();
+                //       },
+                //       child: Icon(
+                //         Icons.camera_alt_outlined,
+                //         color: Colors.black,
+                //       ),
+                //     ),
+                //     SizedBox(
+                //       width: MediaQuery.of(context).size.width * 0.05,
+                //     ),
+                //     FloatingActionButton(
+                //       backgroundColor: Colors.white,
+                //       onPressed: () {
+                //         galleryImage();
+                //       },
+                //       child: Icon(
+                //         Icons.photo_library_outlined,
+                //         color: Colors.black,
+                //       ),
+                //     )
+                //   ],
+                // ),
                 Padding(
                   padding: const EdgeInsets.only(left: 25, right: 25),
                   child: TextField(
@@ -248,93 +250,101 @@ class _Student_InformationState extends State<Student_Information> {
                 ),
                 // ignore: deprecated_member_use
                 FlatButton(
-                    color: Colors.black,
-                    minWidth: MediaQuery.of(context).size.width * 0.8,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    onPressed: () {
-                      sendDataStudent();
-                      print(auth.tenantId);
-                      if (_image == null) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Please Pick Your Image'),
-                              );
-                            });
-                      } else if (_fname == null) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Please Enter your First Name'),
-                              );
-                            });
-                      } else if (_lname == null) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Please Enter Your Last Name'),
-                              );
-                            });
-                      } else if (_class == null) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Please Enter Your Class'),
-                              );
-                            });
-                      } else if (_roll == null) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Please Enter Your Roll No'),
-                              );
-                            });
-                      } else if (_add == null) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title:
-                                    Text('Please Enter Your Present Address'),
-                              );
-                            });
-                      } else if (_g_name == null) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Please Enter Your Guardian Name'),
-                              );
-                            });
-                      } else if (_g_num == null || _g_num.length != 11) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text(
-                                    'Please Enter Your Guardian Contact Number'),
-                              );
-                            });
-                      } else if (_class == null) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Please Enter Your Class'),
-                              );
-                            });
-                      }
-                    },
-                    child: Text(
-                      "Save Information",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ))
+                  color: Colors.orange,
+                  minWidth: MediaQuery.of(context).size.width * 0.8,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Student_page(widget.toString()),
+                        ),
+                        (route) => false);
+                    sendDataStudent();
+                    print(auth.tenantId);
+
+                    // if (_image == null) {
+                    //   showDialog(
+                    //       context: context,
+                    //       builder: (BuildContext context) {
+                    //         return AlertDialog(
+                    //           title: Text('Please Pick Your Image'),
+                    //         );
+                    //       });
+                    // } else
+                    if (_fname == null) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Please Enter your First Name'),
+                            );
+                          });
+                    } else if (_lname == null) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Please Enter Your Last Name'),
+                            );
+                          });
+                    } else if (_class == null) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Please Enter Your Class'),
+                            );
+                          });
+                    } else if (_roll == null) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Please Enter Your Roll No'),
+                            );
+                          });
+                    } else if (_add == null) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Please Enter Your Present Address'),
+                            );
+                          });
+                    } else if (_g_name == null) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Please Enter Your Guardian Name'),
+                            );
+                          });
+                    } else if (_g_num == null || _g_num.length != 11) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text(
+                                  'Please Enter Your Guardian Contact Number'),
+                            );
+                          });
+                    } else if (_class == null) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Please Enter Your Class'),
+                            );
+                          });
+                    }
+                  },
+                  child: Text(
+                    "Save Information",
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                  ),
+                ),
               ],
             ),
           ),
