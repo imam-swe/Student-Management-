@@ -62,7 +62,7 @@ class _Teacher_pageState extends State<Teacher_page> {
                 height: 20,
               ),
               FlatButton(
-                color: Colors.blue,
+                color: Colors.orange,
                 child: Text("Post"),
                 onPressed: () {
                   setState(() async {

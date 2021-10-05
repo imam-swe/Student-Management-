@@ -7,14 +7,15 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:i_school/screens/studentScreens/studentpage.dart';
-// import 'package:image_picker/image_picker.dart';
-//import 'package:i_school/screens/homepage.dart';
+import 'package:image_picker/image_picker.dart';
+// import 'package:i_school/screens/homepage.dart';
 
-//import 'package:i_school/screens/signinScreens/registration_page.dart';
+// import 'package:i_school/screens/signinScreens/registration_page.dart';
 
 // ignore: must_be_immutable
 class Student_Information extends StatefulWidget {
   String email;
+
   Student_Information(this.email);
   @override
   _Student_InformationState createState() => _Student_InformationState();
@@ -26,22 +27,22 @@ class _Student_InformationState extends State<Student_Information> {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<void> sendDataStudent() async {
-    // var imageStorage = FirebaseStorage.instance.ref().child(_image.path);
-    // var put = imageStorage.putFile(_image);
-    //String imgurl = await (await put.onComplete).ref.getDownloadURL();
-    //FirebaseAuth auth = await FirebaseAuth.instance.currentUser!();
+    var imageStorage = FirebaseStorage.instance.ref().child(_image!.path);
+    var put = imageStorage.putFile(_image!);
+    String imgurl = await (await put).ref.getDownloadURL();
+    // FirebaseAuth auth = await FirebaseAuth.instance.currentUser!();
     FirebaseAuth auth =
         (await FirebaseAuth.instance.currentUser) as FirebaseAuth;
-    //await (imgurl);
-    if ( //_image != null &&
+    await (imgurl);
+    if (_image != null &&
         _fname != null &&
-            _lname != null &&
-            _class != null &&
-            _roll != null &&
-            _add != null &&
-            _g_name != null &&
-            _g_num != null &&
-            _g_num.length == 11) {
+        _lname != null &&
+        _class != null &&
+        _roll != null &&
+        _add != null &&
+        _g_name != null &&
+        _g_num != null &&
+        _g_num.length == 11) {
       firestore.collection("i-student").doc(auth.tenantId).set({
         'First_Name': _fname,
         'Last_Name': _lname,
@@ -51,39 +52,41 @@ class _Student_InformationState extends State<Student_Information> {
         'Guardian_Name': _g_name,
         'Guardian_Number': _g_num,
         'Class': _class,
-        //'Image': imgurl
+        'Image': imgurl
       });
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => Student_page(widget.toString())));
+        context,
+        MaterialPageRoute(
+          builder: (context) => Student_page(widget.toString()),
+        ),
+      );
     }
   }
 
-  // late File _image;
-  // Future cameraImage() async {
-  //   final pickedFile =
-  //       await ImagePicker().pickImage(source: ImageSource.camera);
-  //   setState(() {
-  //     if (pickedFile != null) {
-  //       _image = File(pickedFile.path);
-  //     } else {
-  //       print('No image selected.');
-  //     }
-  //   });
-  // }
+  File? _image;
+  Future cameraImage() async {
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
-  // Future galleryImage() async {
-  //   final pickedFile =
-  //       await ImagePicker().pickImage(source: ImageSource.gallery);
-  //   setState(() {
-  //     if (pickedFile != null) {
-  //       _image = File(pickedFile.path);
-  //     } else {
-  //       print('No image selected.');
-  //     }
-  //   });
-  // }
+  Future galleryImage() async {
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,41 +112,41 @@ class _Student_InformationState extends State<Student_Information> {
             //reverse: true,
             child: Column(
               children: [
-                // Container(
-                //   height: MediaQuery.of(context).size.height * 0.3,
-                //   // child: _image == null ? Text("") : Image.file(_image),
-                // ),
-                // SizedBox(
-                //   height: MediaQuery.of(context).size.height * 0.01,
-                // ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     FloatingActionButton(
-                //       backgroundColor: Colors.white,
-                //       onPressed: () {
-                //         cameraImage();
-                //       },
-                //       child: Icon(
-                //         Icons.camera_alt_outlined,
-                //         color: Colors.black,
-                //       ),
-                //     ),
-                //     SizedBox(
-                //       width: MediaQuery.of(context).size.width * 0.05,
-                //     ),
-                //     FloatingActionButton(
-                //       backgroundColor: Colors.white,
-                //       onPressed: () {
-                //         galleryImage();
-                //       },
-                //       child: Icon(
-                //         Icons.photo_library_outlined,
-                //         color: Colors.black,
-                //       ),
-                //     )
-                //   ],
-                // ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  child: _image == null ? Text("") : Image.file(_image!),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FloatingActionButton(
+                      backgroundColor: Colors.white,
+                      onPressed: () {
+                        cameraImage();
+                      },
+                      child: Icon(
+                        Icons.camera_alt_outlined,
+                        color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.05,
+                    ),
+                    FloatingActionButton(
+                      backgroundColor: Colors.white,
+                      onPressed: () {
+                        galleryImage();
+                      },
+                      child: Icon(
+                        Icons.photo_library_outlined,
+                        color: Colors.black,
+                      ),
+                    )
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 25, right: 25),
                   child: TextField(
@@ -264,16 +267,15 @@ class _Student_InformationState extends State<Student_Information> {
                     sendDataStudent();
                     print(auth.tenantId);
 
-                    // if (_image == null) {
-                    //   showDialog(
-                    //       context: context,
-                    //       builder: (BuildContext context) {
-                    //         return AlertDialog(
-                    //           title: Text('Please Pick Your Image'),
-                    //         );
-                    //       });
-                    // } else
-                    if (_fname == null) {
+                    if (_image == null) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Please Pick Your Image'),
+                            );
+                          });
+                    } else if (_fname == null) {
                       showDialog(
                           context: context,
                           builder: (BuildContext context) {

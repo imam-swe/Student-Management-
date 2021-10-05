@@ -191,32 +191,42 @@ class _SignupScreenState extends State<SignupScreen> {
                                     //name: name,
                                     email: email,
                                     password: password)
-                                .then(
-                                  (value) => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          Student_Information(email),
-                                      //LoginScreen(users),
-                                    ),
-                                  ),
-                                );
-                            // if (users == true) {
-                            //   Navigator.pushAndRemoveUntil(
-                            //       context,
-                            //       MaterialPageRoute(
-                            //         builder: (context) =>
-                            //             Student_Information(widget.toString()),
-                            //       ),
-                            //       (route) => false);
-                            // } else {
-                            //   Navigator.pushAndRemoveUntil(
-                            //       context,
-                            //       MaterialPageRoute(
-                            //         builder: (context) => Teacher_Information(),
-                            //       ),
-                            //       (route) => false);
-                            // }
+                                .then((value) => {
+                                          if (users == true)
+                                            {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Student_Information(
+                                                          email),
+                                                ),
+                                                //(route) => false
+                                              )
+                                            }
+                                          else
+                                            {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Teacher_Information(),
+                                                ),
+                                                //(route) => false
+                                              )
+                                            }
+                                        }
+
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //     builder: (context) =>
+                                    //         // Teacher_Information(),
+                                    //         Student_Information(email),
+                                    //     // LoginScreen(users),
+                                    //   ),
+                                    // ),
+                                    );
                           },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
