@@ -25,6 +25,9 @@ class _SignupScreenState extends State<SignupScreen> {
   late final bool users;
   SignupScreen(bool users) {
     this.users = users;
+    setState(() {
+      users = users;
+    });
   }
 
   bool _isHidden = true;
@@ -111,6 +114,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           },
                           onChanged: (value) {
                             email = value;
+                            //print(users);
                           },
                         ),
 
@@ -191,42 +195,47 @@ class _SignupScreenState extends State<SignupScreen> {
                                     //name: name,
                                     email: email,
                                     password: password)
-                                .then((value) => {
-                                          if (users == true)
-                                            {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      Student_Information(
-                                                          email),
-                                                ),
-                                                //(route) => false
-                                              )
-                                            }
-                                          else
-                                            {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      Teacher_Information(),
-                                                ),
-                                                //(route) => false
-                                              )
-                                            }
-                                        }
+                                .then(
+                                  (value) =>
+                                      // {
+                                      //           if (users == true)
+                                      //             {
+                                      //               Navigator.push(
+                                      //                 context,
+                                      //                 MaterialPageRoute(
+                                      //                   builder: (context) =>
+                                      //                       Student_Information(
+                                      //                           email),
+                                      //                 ),
+                                      //                 //(route) => false
+                                      //               )
+                                      //             }
+                                      //           else
+                                      //             {
+                                      //               Navigator.push(
+                                      //                 context,
+                                      //                 MaterialPageRoute(
+                                      //                   builder: (context) =>
+                                      //                       Teacher_Information(),
+                                      //                 ),
+                                      //                 //(route) => false
+                                      //               )
+                                      //             }
+                                      //         }
 
-                                    // Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //     builder: (context) =>
-                                    //         // Teacher_Information(),
-                                    //         Student_Information(email),
-                                    //     // LoginScreen(users),
-                                    //   ),
-                                    // ),
-                                    );
+                                      Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          // Teacher_Information(),
+                                          Student_Information(email),
+                                      // LoginScreen(users),
+                                    ),
+                                    
+                                  ),
+                                  
+                                );
+                                print(users);
                           },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),

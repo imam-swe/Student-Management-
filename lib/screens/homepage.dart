@@ -51,7 +51,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 onPressed: () {
                   users = true;
-                  print(users);
+                  setState(() {
+                    users = users;
+                    print(users);
+                  });
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => LoginScreen(users)),
@@ -73,7 +77,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 onPressed: () {
                   users = false;
-                  print(users);
+                  setState(() {
+                    users = users;
+                    print(users);
+                  });
+                  
+                  // print(users);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => LoginScreen(users)),

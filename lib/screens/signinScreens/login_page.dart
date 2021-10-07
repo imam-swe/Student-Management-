@@ -227,7 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 context,
                 MaterialPageRoute(builder: (context) => SignupScreen(users)),
               );
-
+              print(users);
               // Navigator.pushNamedAndRemoveUntil(context, (context)=>ChatRoom(), (route) => false)
             },
             child: Text(
