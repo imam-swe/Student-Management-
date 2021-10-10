@@ -153,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         //ignore: deprecated_member_use
                         RaisedButton(
-                          child: Text('login'),
+                          child: Text('Sign In'),
                           onPressed: () async {
                             //_submit();
                             await auth.signInWithEmailAndPassword(

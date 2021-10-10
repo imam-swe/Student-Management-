@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i_school/screens/signinScreens/login_page.dart';
+//import 'package:i_school/screens/signinScreens/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:i_school/screens/studentScreens/student_info.dart';
 import 'package:i_school/screens/teacherScreens/teacher_info.dart';
@@ -16,24 +16,32 @@ class SignupScreen extends StatefulWidget {
   }
 
   @override
-  _SignupScreenState createState() => _SignupScreenState();
+  _SignupScreenState createState() => _SignupScreenState(users);
 }
 
 class _SignupScreenState extends State<SignupScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   late final bool users;
-  SignupScreen(bool users) {
+  _SignupScreenState(bool users) {
     this.users = users;
+    // setState(() {
+    //   users = users;
+    // });
+  }
+
+  bool _isHidden1 = true;
+
+  void _togglePasswordView1() {
     setState(() {
-      users = users;
+      _isHidden1 = !_isHidden1;
     });
   }
 
-  bool _isHidden = true;
-  void _togglePasswordView() {
+  bool _isHidden2 = true;
+  void _togglePasswordView2() {
     setState(() {
-      _isHidden = !_isHidden;
+      _isHidden2 = !_isHidden2;
     });
   }
 
@@ -110,7 +118,8 @@ class _SignupScreenState extends State<SignupScreen> {
                             if (value!.isEmpty || !value.contains('@')) {
                               return 'invalid email!\nPlease try again with correct email address.';
                             }
-                            return null;
+                            //return null;
+                            print(users);
                           },
                           onChanged: (value) {
                             email = value;
@@ -127,14 +136,14 @@ class _SignupScreenState extends State<SignupScreen> {
                                 child: const Icon(Icons.lock),
                               ),
                               suffixIcon: InkWell(
-                                onTap: _togglePasswordView,
+                                onTap: _togglePasswordView1,
                                 child: Icon(
-                                  _isHidden
+                                  _isHidden1
                                       ? Icons.visibility_off
                                       : Icons.visibility,
                                 ),
                               )),
-                          obscureText: _isHidden,
+                          obscureText: _isHidden1,
                           controller: _passwordController,
                           validator: (value) {
                             if (value!.isEmpty ||
@@ -157,25 +166,27 @@ class _SignupScreenState extends State<SignupScreen> {
                                 child: const Icon(Icons.lock),
                               ),
                               suffixIcon: InkWell(
-                                onTap: _togglePasswordView,
+                                onTap: _togglePasswordView2,
                                 child: Icon(
-                                  _isHidden
+                                  _isHidden2
                                       ? Icons.visibility_off
                                       : Icons.visibility,
                                 ),
                               )),
-                          obscureText: _isHidden,
+                          obscureText: _isHidden2,
                           controller: _confirmPass,
                           validator: (value) {
                             if (value!.isEmpty ||
                                 value.length <= 5 && value.length > 20) {
-                              return 'Password Empty Or Too Short';
+                              //return 'Enter Password from 6 to 20 characters';
+                              print(
+                                  'Enter Password between 6 to 20 characters');
                             }
                             //return null;
                             if (value != _passwordController) {
-                              return "Password Not Match";
+                              print("Password Not Match");
                             }
-                            return null;
+                            //return null;
                           },
                           onChanged: (value) {
                             confirmpass = value;
@@ -187,7 +198,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         // ignore: deprecated_member_use
                         RaisedButton(
-                          child: Text('submit'),
+                          child: Text('Sign Up'),
                           onPressed: () async {
                             //_submit();
                             await auth
@@ -195,47 +206,43 @@ class _SignupScreenState extends State<SignupScreen> {
                                     //name: name,
                                     email: email,
                                     password: password)
-                                .then(
-                                  (value) =>
-                                      // {
-                                      //           if (users == true)
-                                      //             {
-                                      //               Navigator.push(
-                                      //                 context,
-                                      //                 MaterialPageRoute(
-                                      //                   builder: (context) =>
-                                      //                       Student_Information(
-                                      //                           email),
-                                      //                 ),
-                                      //                 //(route) => false
-                                      //               )
-                                      //             }
-                                      //           else
-                                      //             {
-                                      //               Navigator.push(
-                                      //                 context,
-                                      //                 MaterialPageRoute(
-                                      //                   builder: (context) =>
-                                      //                       Teacher_Information(),
-                                      //                 ),
-                                      //                 //(route) => false
-                                      //               )
-                                      //             }
-                                      //         }
+                                .then((value) => {
+                                      if (users == true)
+                                        {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Student_Information(email),
+                                            ),
+                                            //(route) => false
+                                          )
+                                        }
+                                      else
+                                        {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Teacher_Information(email),
+                                            ),
+                                            //(route) => false
+                                          )
+                                        }
+                                    });
 
-                                      Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          // Teacher_Information(),
-                                          Student_Information(email),
-                                      // LoginScreen(users),
-                                    ),
-                                    
-                                  ),
-                                  
-                                );
-                                print(users);
+                            //     Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) =>
+                            //         // Teacher_Information(),
+                            //         Student_Information(email),
+                            //     // LoginScreen(users),
+                            //   ),
+
+                            // ),
+
+                            print(users);
                           },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),

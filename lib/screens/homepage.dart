@@ -51,15 +51,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 onPressed: () {
                   users = true;
-                  setState(() {
-                    users = users;
-                    print(users);
-                  });
-
+                  
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => LoginScreen(users)),
                   );
+                  print(users);
                 },
                 child: Text(
                   'Student',
@@ -77,16 +74,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 onPressed: () {
                   users = false;
-                  setState(() {
-                    users = users;
-                    print(users);
-                  });
                   
-                  // print(users);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => LoginScreen(users)),
                   );
+                  print(users);
                 },
                 child: Text(
                   'Teacher',
