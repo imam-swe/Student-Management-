@@ -1,6 +1,7 @@
-
 // ignore_for_file: unnecessary_null_comparison
+
 import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -8,25 +9,29 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:i_school/screens/teacherScreens/teacherpage.dart';
 import 'package:image_picker/image_picker.dart';
 // import 'package:i_school/screens/homepage.dart';
+
 // import 'package:i_school/screens/signinScreens/registration_page.dart';
+
 // ignore: must_be_immutable
 class Teacher_Information extends StatefulWidget {
   String email;
+
   Teacher_Information(this.email);
+
   @override
   _Teacher_InformationState createState() => _Teacher_InformationState();
 }
+
 class _Teacher_InformationState extends State<Teacher_Information> {
   late String _fname, _lname, _roll, _add, _g_name, _g_num, _class;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
-  Future<void> sendDataStudent() async {
+
+  Future<void> sendDataTeacher() async {
     var imageStorage = FirebaseStorage.instance.ref().child(_image!.path);
     var put = imageStorage.putFile(_image!);
     String imgurl = await (await put).ref.getDownloadURL();
-    // FirebaseAuth auth = await FirebaseAuth.instance.currentUser!();
-    FirebaseAuth auth =
-        (await FirebaseAuth.instance.currentUser) as FirebaseAuth;
+
     await (imgurl);
     if (_image != null &&
         _fname != null &&
@@ -37,7 +42,7 @@ class _Teacher_InformationState extends State<Teacher_Information> {
         _g_name != null &&
         _g_num != null &&
         _g_num.length == 11) {
-      firestore.collection('i-teacher').doc(auth.tenantId).set({
+      firestore.collection('i-teacher').doc(auth.currentUser!.uid).set({
         'First_Name': _fname,
         'Last_Name': _lname,
         'E-Mail': widget.email,
@@ -56,6 +61,7 @@ class _Teacher_InformationState extends State<Teacher_Information> {
       );
     }
   }
+
   File? _image;
   Future cameraImage() async {
     final pickedFile =
@@ -68,6 +74,7 @@ class _Teacher_InformationState extends State<Teacher_Information> {
       }
     });
   }
+
   Future galleryImage() async {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -79,6 +86,7 @@ class _Teacher_InformationState extends State<Teacher_Information> {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -251,14 +259,15 @@ class _Teacher_InformationState extends State<Teacher_Information> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   onPressed: () {
+                    sendDataTeacher();
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Teacher_page(widget.toString()),
+                          builder: (context) => Teacher_page("false"),
                         ),
                         (route) => false);
-                    sendDataStudent();
                     print(auth.tenantId);
+                    
                     if (_image == null) {
                       showDialog(
                           context: context,

@@ -17,6 +17,7 @@ class Student_Information extends StatefulWidget {
   String email;
 
   Student_Information(this.email);
+
   @override
   _Student_InformationState createState() => _Student_InformationState();
 }
@@ -30,9 +31,8 @@ class _Student_InformationState extends State<Student_Information> {
     var imageStorage = FirebaseStorage.instance.ref().child(_image!.path);
     var put = imageStorage.putFile(_image!);
     String imgurl = await (await put).ref.getDownloadURL();
-    
-    FirebaseAuth auth =
-        (await FirebaseAuth.instance.currentUser) as FirebaseAuth;
+
+    //FirebaseAuth auth = FirebaseAuth.instance.currentUser;
     await (imgurl);
     if (_image != null &&
         _fname != null &&
@@ -43,7 +43,7 @@ class _Student_InformationState extends State<Student_Information> {
         _g_name != null &&
         _g_num != null &&
         _g_num.length == 11) {
-      firestore.collection('i-student').doc(auth.tenantId).set({
+      firestore.collection('i-student').doc(auth.currentUser!.uid).set({
         'First_Name': _fname,
         'Last_Name': _lname,
         'E-Mail': widget.email,
@@ -255,19 +255,18 @@ class _Student_InformationState extends State<Student_Information> {
                 ),
                 // ignore: deprecated_member_use
                 new FlatButton(
-                  
                   color: Colors.orange,
                   minWidth: MediaQuery.of(context).size.width * 0.8,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   onPressed: () {
+                    sendDataStudent();
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Student_page(widget.toString()),
+                          builder: (context) => Student_page("true"),
                         ),
                         (route) => false);
-                    sendDataStudent();
                     print(auth.tenantId);
 
                     if (_image == null) {
