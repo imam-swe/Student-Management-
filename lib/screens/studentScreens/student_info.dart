@@ -30,7 +30,7 @@ class _Student_InformationState extends State<Student_Information> {
     var imageStorage = FirebaseStorage.instance.ref().child(_image!.path);
     var put = imageStorage.putFile(_image!);
     String imgurl = await (await put).ref.getDownloadURL();
-    // FirebaseAuth auth = await FirebaseAuth.instance.currentUser!();
+    
     FirebaseAuth auth =
         (await FirebaseAuth.instance.currentUser) as FirebaseAuth;
     await (imgurl);
@@ -43,7 +43,7 @@ class _Student_InformationState extends State<Student_Information> {
         _g_name != null &&
         _g_num != null &&
         _g_num.length == 11) {
-      firestore.collection("i-student").doc(auth.tenantId).set({
+      firestore.collection('i-student').doc(auth.tenantId).set({
         'First_Name': _fname,
         'Last_Name': _lname,
         'E-Mail': widget.email,
@@ -122,7 +122,8 @@ class _Student_InformationState extends State<Student_Information> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FloatingActionButton(
+                    new FloatingActionButton(
+                      heroTag: null,
                       backgroundColor: Colors.white,
                       onPressed: () {
                         cameraImage();
@@ -135,7 +136,8 @@ class _Student_InformationState extends State<Student_Information> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.05,
                     ),
-                    FloatingActionButton(
+                    new FloatingActionButton(
+                      heroTag: null,
                       backgroundColor: Colors.white,
                       onPressed: () {
                         galleryImage();
@@ -252,7 +254,8 @@ class _Student_InformationState extends State<Student_Information> {
                   height: MediaQuery.of(context).size.height * 0.015,
                 ),
                 // ignore: deprecated_member_use
-                FlatButton(
+                new FlatButton(
+                  
                   color: Colors.orange,
                   minWidth: MediaQuery.of(context).size.width * 0.8,
                   shape: RoundedRectangleBorder(

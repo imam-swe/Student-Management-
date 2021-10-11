@@ -1,7 +1,6 @@
+
 // ignore_for_file: unnecessary_null_comparison
-
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -9,23 +8,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:i_school/screens/teacherScreens/teacherpage.dart';
 import 'package:image_picker/image_picker.dart';
 // import 'package:i_school/screens/homepage.dart';
-
 // import 'package:i_school/screens/signinScreens/registration_page.dart';
-
 // ignore: must_be_immutable
 class Teacher_Information extends StatefulWidget {
   String email;
-
   Teacher_Information(this.email);
   @override
   _Teacher_InformationState createState() => _Teacher_InformationState();
 }
-
 class _Teacher_InformationState extends State<Teacher_Information> {
   late String _fname, _lname, _roll, _add, _g_name, _g_num, _class;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
-
   Future<void> sendDataStudent() async {
     var imageStorage = FirebaseStorage.instance.ref().child(_image!.path);
     var put = imageStorage.putFile(_image!);
@@ -43,7 +37,7 @@ class _Teacher_InformationState extends State<Teacher_Information> {
         _g_name != null &&
         _g_num != null &&
         _g_num.length == 11) {
-      firestore.collection("i-teacher").doc(auth.tenantId).set({
+      firestore.collection('i-teacher').doc(auth.tenantId).set({
         'First_Name': _fname,
         'Last_Name': _lname,
         'E-Mail': widget.email,
@@ -62,7 +56,6 @@ class _Teacher_InformationState extends State<Teacher_Information> {
       );
     }
   }
-
   File? _image;
   Future cameraImage() async {
     final pickedFile =
@@ -75,7 +68,6 @@ class _Teacher_InformationState extends State<Teacher_Information> {
       }
     });
   }
-
   Future galleryImage() async {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -87,7 +79,6 @@ class _Teacher_InformationState extends State<Teacher_Information> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -122,7 +113,8 @@ class _Teacher_InformationState extends State<Teacher_Information> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FloatingActionButton(
+                    new FloatingActionButton(
+                      heroTag: null,
                       backgroundColor: Colors.white,
                       onPressed: () {
                         cameraImage();
@@ -135,7 +127,8 @@ class _Teacher_InformationState extends State<Teacher_Information> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.05,
                     ),
-                    FloatingActionButton(
+                    new FloatingActionButton(
+                      heroTag: null,
                       backgroundColor: Colors.white,
                       onPressed: () {
                         galleryImage();
@@ -179,7 +172,7 @@ class _Teacher_InformationState extends State<Teacher_Information> {
                   padding: const EdgeInsets.only(left: 25, right: 25),
                   child: TextFormField(
                     keyboardType: TextInputType.number,
-                    decoration: InputDecoration(hintText: "Class *"),
+                    decoration: InputDecoration(hintText: ""),
                     onChanged: (input) {
                       setState(() {
                         _class = input;
@@ -266,7 +259,6 @@ class _Teacher_InformationState extends State<Teacher_Information> {
                         (route) => false);
                     sendDataStudent();
                     print(auth.tenantId);
-
                     if (_image == null) {
                       showDialog(
                           context: context,
