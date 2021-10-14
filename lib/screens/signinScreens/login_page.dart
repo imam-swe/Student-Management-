@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        Student_page(widget.toString()),
+                                        Student_page(email),
                                   ),
                                   (route) => false);
                             } else {
@@ -179,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        Teacher_page(widget.toString()),
+                                        Teacher_page(email),
                                   ),
                                   (route) => false);
                             }
