@@ -36,47 +36,63 @@ class _Teacher_pageState extends State<Teacher_page> {
           ),
         ),
         body: Center(
-          child: Column(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextField(
-                controller: noticecontroller,
-                decoration: InputDecoration(
-                  labelText: 'Notice',
-                  icon: const Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: const Icon(Icons.notification_add),
+              Expanded(
+                child: TextField(
+                  controller: noticecontroller,
+                  decoration: InputDecoration(
+                    labelText: 'Add a Notice',
+                    icon: const Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child: const Icon(Icons.notification_add),
+                    ),
                   ),
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  // onChanged: (input) {
+                  //   setState(
+                  //     () {
+                  //       notice = input;
+                  //     },
+                  //   );
+                  // },
                 ),
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                // onChanged: (input) {
-                //   setState(
-                //     () {
-                //       notice = input;
-                //     },
-                //   );
-                // },
+              ),
+              IconButton(
+                onPressed: () {
+                  firestore.collection('Test').add(
+                    {
+                      'NoticeTime': DateTime.now().toString(),
+                      'Notice': noticecontroller.text,
+                      //'Email': loggedInUser.email,
+                    },
+                  );
+                  noticecontroller.clear();
+                },
+                icon: Icon(Icons.send),
               ),
               SizedBox(
                 height: 20,
               ),
-              FlatButton(
-                color: Colors.orange,
-                child: Text("Post"),
-                onPressed: () {
-                  setState(() async {
-                    // firestore.collection('Test').add({
-                    //   "UserData" = notice,
-                    // });
-                    firestore.collection('Test').add(
-                      {
-                        'Notice': noticecontroller.text,
-                      },
-                    );
-                  });
-                },
-              ),
+              // FlatButton(
+              //   color: Colors.orange,
+              //   child: Text("Post"),
+              //   onPressed: () {
+              //     setState(() async {
+              //       // firestore.collection('Test').add({
+              //       //   "UserData" = notice,
+              //       // });
+              //       firestore.collection('Test').add(
+              //         {
+              //           'Notice': noticecontroller.text,
+              //         },
+              //       );
+              //     });
+              //     noticecontroller.clear();
+              //   },
+              // ),
             ],
           ),
         ),

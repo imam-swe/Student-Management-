@@ -230,6 +230,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                           )
                                         }
                                     });
+                                    print(email);
 
                             //     Navigator.push(
                             //   context,
