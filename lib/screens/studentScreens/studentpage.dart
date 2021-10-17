@@ -7,7 +7,7 @@ import 'package:i_school/screens/studentScreens/drawer_st.dart';
 // ignore: must_be_immutable
 class Student_page extends StatefulWidget {
   String? status;
-  
+
   // Student_page(String? status) {
   //   this.status = status;
   // }
@@ -74,30 +74,31 @@ class _Student_pageState extends State<Student_page> {
                             color: Colors.amberAccent.withOpacity(0.4),
                           ),
                           child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                // crossAxisAlignment:
-                                //     widget.email == data['Email']
-                                //         ? CrossAxisAlignment.end
-                                //         : CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    data['Notice'] ?? "",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontStyle: FontStyle.normal,
-                                    ),
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
+                              // crossAxisAlignment:
+                              //     widget.email == data['Email']
+                              //         ? CrossAxisAlignment.end
+                              //         : CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  data['Notice'] ?? "",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontStyle: FontStyle.normal,
                                   ),
-                                  // Text(
-                                  //   //trying to retrive date & time of notice
-                                  //   data['NoticeTime'] ?? "",
-                                  //   style: TextStyle(
-                                  //     fontSize: 10,
-                                  //     fontStyle: FontStyle.italic,
-                                  //   ),
-                                  // ),
-                                ],
-                              )),
+                                ),
+                                Text(
+                                  //trying to retrive date & time of notice
+                                  data['NoticeTime'].toString().substring(0,19),
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 10,

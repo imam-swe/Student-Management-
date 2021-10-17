@@ -64,7 +64,7 @@ class _Teacher_pageState extends State<Teacher_page> {
                 onPressed: () {
                   firestore.collection('Test').add(
                     {
-                      'NoticeTime': DateTime.now(),
+                      'NoticeTime': DateTime.now().toString(),
                       'Notice': noticecontroller.text,
                       //'Email': loggedInUser.email,
                     },

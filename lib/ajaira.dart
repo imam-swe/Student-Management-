@@ -163,6 +163,8 @@ class _ChatRoomState extends State<ChatRoom> {
                       },
                       icon: Icon(Icons.send),
                     ),
+                    
+                    
                   ],
                 ),
               ),
