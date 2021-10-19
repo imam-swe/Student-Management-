@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:i_school/messages/chat_room_all.dart';
 import 'package:i_school/screens/homepage.dart';
 import 'package:i_school/screens/studentScreens/drawer_st.dart';
 
@@ -71,7 +72,7 @@ class _Student_pageState extends State<Student_page> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.amberAccent.withOpacity(0.4),
+                            color: Colors.amber.shade300.withOpacity(0.4),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
@@ -84,13 +85,14 @@ class _Student_pageState extends State<Student_page> {
                                 Text(
                                   data['Notice'] ?? "",
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 18,
                                     fontStyle: FontStyle.normal,
                                   ),
                                 ),
                                 Text(
-                                  //trying to retrive date & time of notice
-                                  data['NoticeTime'].toString().substring(0,19),
+                                  data['NoticeTime']
+                                      .toString()
+                                      .substring(0, 19),
                                   style: TextStyle(
                                     fontSize: 10,
                                     fontStyle: FontStyle.italic,
@@ -235,10 +237,10 @@ class _Student_pageState extends State<Student_page> {
             },
           ),
           ListTile(
-            title: const Text('ChatRoom'),
+            title: const Text('Messaging'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ChatRoomAll()));
             },
           ),
           ListTile(

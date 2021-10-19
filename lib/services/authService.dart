@@ -33,13 +33,15 @@ class AuthService {
         await _firestore
             .collection('teacher user')
             .doc(_firebaseAuth.currentUser!.uid)
-            .set({
-          "Name": userName,
-          "Email": email,
-          "phoneNumber": phoneNo,
-          "status": "Unavialable",
-          "uid": _firebaseAuth.currentUser!.uid,
-        });
+            .set(
+          {
+            "Name": userName,
+            "Email": email,
+            "phoneNumber": phoneNo,
+            "status": "Unavialable",
+            "uid": _firebaseAuth.currentUser!.uid,
+          },
+        );
       }
 //      _firebaseAuth.currentUser!.updateDisplayName(userName.toString());
 //      await _firestore
