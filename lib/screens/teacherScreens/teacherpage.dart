@@ -1,4 +1,5 @@
 // ignore_for_file: deprecated_member_use
+import 'package:i_school/messages/chat_room_all.dart';
 import 'package:i_school/screens/homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -35,66 +36,150 @@ class _Teacher_pageState extends State<Teacher_page> {
             ),
           ),
         ),
-        body: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: noticecontroller,
-                  decoration: InputDecoration(
-                    labelText: 'Add a Notice',
-                    icon: const Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
-                      child: const Icon(Icons.notification_add),
-                    ),
+
+        // body: Center(
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.center,
+        //     children: [
+        //       Expanded(
+        //         child: TextField(
+        //           controller: noticecontroller,
+        //           decoration: InputDecoration(
+        //             labelText: 'Add a Notice',
+        //             icon: const Padding(
+        //               padding: const EdgeInsets.only(top: 15.0),
+        //               child: const Icon(Icons.notification_add),
+        //             ),
+        //           ),
+        //           keyboardType: TextInputType.multiline,
+        //           maxLines: null,
+        //           // onChanged: (input) {
+        //           //   setState(
+        //           //     () {
+        //           //       notice = input;
+        //           //     },
+        //           //   );
+        //           // },
+        //         ),
+        //       ),
+        //       IconButton(
+        //         onPressed: () {
+        //           firestore.collection('Test').add(
+        //             {
+        //               'NoticeTime': DateTime.now().toString(),
+        //               'Notice': noticecontroller.text,
+        //               //'Email': loggedInUser.email,
+        //             },
+        //           );
+        //           noticecontroller.clear();
+        //         },
+        //         icon: Icon(Icons.send),
+        //       ),
+        //       SizedBox(
+        //         height: 20,
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        
+        body: CustomScrollView(
+          primary: false,
+          slivers: <Widget>[
+            SliverPadding(
+              padding: const EdgeInsets.all(20),
+              sliver: SliverGrid.count(
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                crossAxisCount: 2,
+                children: <Widget>[
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    child: Center(child: const Text("Result")),
+                    decoration: BoxDecoration(
+                        color: Colors.green[100],
+                        borderRadius: BorderRadius.circular(8)),
                   ),
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  // onChanged: (input) {
-                  //   setState(
-                  //     () {
-                  //       notice = input;
-                  //     },
-                  //   );
-                  // },
-                ),
+
+                  Container(
+                    padding: const EdgeInsets.all(0.5),
+                    child: Center(
+                      //child: const Text('Notice'),
+                      child: Column(
+                       // mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.notification_add),
+                          Expanded(
+                            child: TextField(
+                              controller: noticecontroller,
+                              decoration: InputDecoration(
+                                labelText: 'Add a Notice',
+                              ),
+                              keyboardType: TextInputType.multiline,
+                              maxLines: null,
+                              // onChanged: (input) {
+                              //   setState(
+                              //     () {
+                              //       notice = input;
+                              //     },
+                              //   );
+                              // },
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              firestore.collection('Test').add(
+                                {
+                                  'NoticeTime': DateTime.now().toString(),
+                                  'Notice': noticecontroller.text,
+                                },
+                              );
+                              noticecontroller.clear();
+                            },
+                            icon: Icon(Icons.send),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                        ],
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.yellow[100],
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    child: Center(child: const Text('Class Routine')),
+                    decoration: BoxDecoration(
+                        color: Colors.green[300],
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    child: Center(child: const Text('Who scream')),
+                    decoration: BoxDecoration(
+                        color: Colors.green[400],
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    child: Center(child: const Text('Revolution is coming...')),
+                    decoration: BoxDecoration(
+                        color: Colors.green[500],
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    child: Center(child: const Text('Revolution, they...')),
+                    decoration: BoxDecoration(
+                        color: Colors.green[600],
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                ],
               ),
-              IconButton(
-                onPressed: () {
-                  firestore.collection('Test').add(
-                    {
-                      'NoticeTime': DateTime.now().toString(),
-                      'Notice': noticecontroller.text,
-                      //'Email': loggedInUser.email,
-                    },
-                  );
-                  noticecontroller.clear();
-                },
-                icon: Icon(Icons.send),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              // FlatButton(
-              //   color: Colors.orange,
-              //   child: Text("Post"),
-              //   onPressed: () {
-              //     setState(() async {
-              //       // firestore.collection('Test').add({
-              //       //   "UserData" = notice,
-              //       // });
-              //       firestore.collection('Test').add(
-              //         {
-              //           'Notice': noticecontroller.text,
-              //         },
-              //       );
-              //     });
-              //     noticecontroller.clear();
-              //   },
-              // ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -136,10 +221,10 @@ class _Teacher_pageState extends State<Teacher_page> {
             },
           ),
           ListTile(
-            title: const Text('ChatRoom'),
+            title: const Text('Message'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ChatRoomAll()));
             },
           ),
           ListTile(
