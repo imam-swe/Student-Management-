@@ -81,7 +81,7 @@ class _Teacher_pageState extends State<Teacher_page> {
         //     ],
         //   ),
         // ),
-        
+
         body: CustomScrollView(
           primary: false,
           slivers: <Widget>[
@@ -99,13 +99,12 @@ class _Teacher_pageState extends State<Teacher_page> {
                         color: Colors.green[100],
                         borderRadius: BorderRadius.circular(8)),
                   ),
-
                   Container(
                     padding: const EdgeInsets.all(0.5),
                     child: Center(
                       //child: const Text('Notice'),
                       child: Column(
-                       // mainAxisAlignment: MainAxisAlignment.center,
+                        // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.notification_add),
                           Expanded(
@@ -147,7 +146,6 @@ class _Teacher_pageState extends State<Teacher_page> {
                         color: Colors.yellow[100],
                         borderRadius: BorderRadius.circular(8)),
                   ),
-
                   Container(
                     padding: const EdgeInsets.all(8),
                     child: Center(child: const Text('Class Routine')),
@@ -199,6 +197,16 @@ class _Teacher_pageState extends State<Teacher_page> {
           //   ),
           //   child: Text('Drawer Header'),
           // ),
+          ListTile(
+            title: const Text('Home'),
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Teacher_page("false")),
+                  (route) => false);
+            },
+          ),
           ListTile(
             title: const Text('Profile'),
             onTap: () {

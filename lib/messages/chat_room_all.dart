@@ -117,7 +117,6 @@ class _ChatRoomAllState extends State<ChatRoomAll> {
                                             fontStyle: FontStyle.normal,
                                           ),
                                         ),
-                                        
                                         Text(
                                           data['messageTime']
                                               .toString()
@@ -160,10 +159,7 @@ class _ChatRoomAllState extends State<ChatRoomAll> {
                     ),
                     IconButton(
                       onPressed: () {
-                        _firestore
-                            .collection('Messages')
-                            .doc(auth.currentUser!.uid)
-                            .set(
+                        _firestore.collection('Messages').add(
                           {
                             'messageTime': DateTime.now().toString(),
                             'text': messageText,

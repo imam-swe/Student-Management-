@@ -216,6 +216,15 @@ class _Student_pageState extends State<Student_page> {
           //   child: Text('Drawer Header'),
           // ),
           ListTile(
+            title: const Text('Home'),
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Student_page("true")),
+                  (route) => false);
+            },
+          ),
+          ListTile(
             title: const Text('Profile'),
             onTap: () {
               // Update the state of the app.
@@ -239,6 +248,10 @@ class _Student_pageState extends State<Student_page> {
           ListTile(
             title: const Text('Messaging'),
             onTap: () {
+              // Navigator.pushAndRemoveUntil(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => ChatRoomAll()),
+              //     (route) => false);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ChatRoomAll()));
             },
