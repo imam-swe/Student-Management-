@@ -60,6 +60,7 @@ class _SignupScreenState extends State<SignupScreen> {
       backgroundColor: Color(0xffeae2b7),
       appBar: AppBar(
         title: Text('Sign Up'),
+        centerTitle: true,
         // actions: <Widget>[
         //   // ignore: deprecated_member_use
         //   FlatButton(
@@ -73,13 +74,12 @@ class _SignupScreenState extends State<SignupScreen> {
         //   ),
         // ],
       ),
-      body: Stack(
-        children: <Widget>[
+      body: 
           Center(
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
+            // child: Card(
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(10.0),
+            //   ),
               child: Container(
                 // height: 400,
                 // width: 300,
@@ -196,60 +196,65 @@ class _SignupScreenState extends State<SignupScreen> {
                         SizedBox(
                           height: 30,
                         ),
-                        // ignore: deprecated_member_use
-                        RaisedButton(
-                          child: Text('Sign Up'),
-                          onPressed: () async {
-                            //_submit();
-                            await auth
-                                .createUserWithEmailAndPassword(
-                                    //name: name,
-                                    email: email,
-                                    password: password)
-                                .then((value) => {
-                                      if (users == true)
-                                        {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  Student_Information(email),
-                                            ),
-                                            //(route) => false
-                                          )
-                                        }
-                                      else
-                                        {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  Teacher_Information(email),
-                                            ),
-                                            //(route) => false
-                                          )
-                                        }
-                                    });
-                                    print(email);
 
-                            //     Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) =>
-                            //         // Teacher_Information(),
-                            //         Student_Information(email),
-                            //     // LoginScreen(users),
-                            //   ),
+                        SizedBox(
+                          width: 150,
+                          height: 50,
+                          // ignore: deprecated_member_use
+                          child: RaisedButton(
+                            child: Text('Sign Up',style: TextStyle(fontSize: 24),),
+                            onPressed: () async {
+                              //_submit();
+                              await auth
+                                  .createUserWithEmailAndPassword(
+                                      //name: name,
+                                      email: email,
+                                      password: password)
+                                  .then((value) => {
+                                        if (users == true)
+                                          {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Student_Information(email),
+                                              ),
+                                              //(route) => false
+                                            )
+                                          }
+                                        else
+                                          {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Teacher_Information(email),
+                                              ),
+                                              //(route) => false
+                                            )
+                                          }
+                                      });
+                              //print(email);
 
-                            // ),
+                              //     Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) =>
+                              //         // Teacher_Information(),
+                              //         Student_Information(email),
+                              //     // LoginScreen(users),
+                              //   ),
 
-                            print(users);
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
+                              // ),
+
+                              print(users);
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            color: Colors.orange,
+                            textColor: Colors.black,
                           ),
-                          color: Colors.orange,
-                          textColor: Colors.black,
                         )
                       ],
                     ),
@@ -259,9 +264,9 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               //color: Colors.white,
             ),
-          )
-        ],
-      ),
+          
+        
+      
     );
   }
 }
