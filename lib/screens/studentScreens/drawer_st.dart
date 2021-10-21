@@ -37,7 +37,7 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
         imageurl = fields['Image'] ?? '';
         email = fields['E-Mail'] ?? '';
       });
-      print(imageurl.toString() +  '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+     // print(imageurl.toString() +  '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
     });
   }
 

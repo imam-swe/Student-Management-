@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:i_school/messages/chat_room_all.dart';
 import 'package:i_school/screens/homepage.dart';
 import 'package:i_school/screens/studentScreens/drawer_st.dart';
+import 'package:i_school/screens/studentScreens/student_profile.dart';
 
 // ignore: must_be_immutable
 class Student_page extends StatefulWidget {
@@ -227,8 +228,8 @@ class _Student_pageState extends State<Student_page> {
           ListTile(
             title: const Text('Profile'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => StudentProfile()));
             },
           ),
           ListTile(
