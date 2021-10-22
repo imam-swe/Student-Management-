@@ -4,6 +4,7 @@ import 'package:i_school/screens/homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:i_school/screens/teacherScreens/drawer_tr.dart';
+import 'package:i_school/screens/teacherScreens/teacher_profile.dart';
 
 class Teacher_page extends StatefulWidget {
   const Teacher_page(String string, {Key? key}) : super(key: key);
@@ -210,8 +211,8 @@ class _Teacher_pageState extends State<Teacher_page> {
           ListTile(
             title: const Text('Profile'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => TeacherProfile()));
             },
           ),
           ListTile(

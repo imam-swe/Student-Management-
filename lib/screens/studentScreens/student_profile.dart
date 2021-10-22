@@ -22,13 +22,12 @@ class _StudentProfileState extends State<StudentProfile> {
       _g_num,
       _class;
 
-  CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('i-student');
-  dynamic data;
+  // CollectionReference collectionReference =
+  //     FirebaseFirestore.instance.collection('i-student');
+  // dynamic data;
   getProfile() async {
     final collection = FirebaseFirestore.instance.collection('i-student');
-    final querySnapshot =
-        await collection.doc(auth.currentUser!.uid).get().then((value) {
+    await collection.doc(auth.currentUser!.uid).get().then((value) {
       this._image = value["Image"];
       this._fname = value["First_Name"];
       this._lname = value["Last_Name"];
