@@ -199,7 +199,7 @@ class _Teacher_pageState extends State<Teacher_page> {
           //   child: Text('Drawer Header'),
           // ),
           ListTile(
-            title: const Text('Home'),
+            title: const Text('     Home'),
             onTap: () {
               Navigator.pushAndRemoveUntil(
                   context,
@@ -209,35 +209,49 @@ class _Teacher_pageState extends State<Teacher_page> {
             },
           ),
           ListTile(
-            title: const Text('Profile'),
+            title: const Text('     Profile'),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => TeacherProfile()));
             },
           ),
           ListTile(
-            title: const Text('Notice Board'),
+            title: const Text('     Notice'),
             onTap: () {
               // Update the state of the app.
               // ...
             },
           ),
           ListTile(
-            title: const Text('Notice'),
+            title: const Text('     Result'),
+            onTap: () {
+              // Update the state of the app.
+              // ...
+            },
+          ),
+           ListTile(
+            title: const Text('     Routine'),
+            onTap: () {
+              // Update the state of the app.
+              // ...
+            },
+          ),
+           ListTile(
+            title: const Text('     Live Class'),
             onTap: () {
               // Update the state of the app.
               // ...
             },
           ),
           ListTile(
-            title: const Text('Message'),
+            title: const Text('     Message'),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ChatRoomAll()));
             },
           ),
           ListTile(
-            title: const Text('Logout'),
+            title: const Text('     Logout'),
             onTap: () {
               Navigator.pushAndRemoveUntil(
                   context,

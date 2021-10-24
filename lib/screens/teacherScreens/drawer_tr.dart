@@ -59,7 +59,7 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
             child: Column(
               children: [
                 CircleAvatar(
-                  radius: 30.0,
+                  radius: 50.0,
                   backgroundImage: NetworkImage(imageurl.toString()),
                   backgroundColor: Colors.white,
                 ),
