@@ -52,12 +52,17 @@ class _Student_pageState extends State<Student_page> {
           padding: const EdgeInsets.all(8.0),
           child: Container(
             child: StreamBuilder(
-              stream: firestore.collection("Test").orderBy('NoticeTime').snapshots(),
+              stream: firestore
+                  .collection("Test")
+                  .orderBy('Notice Time')
+                  .snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) {
                   return Text("No Data");
                 }
                 return ListView(
+                  reverse: true,
+                  shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   physics: ScrollPhysics(),
                   padding: EdgeInsets.only(top: 24),
@@ -71,6 +76,7 @@ class _Student_pageState extends State<Student_page> {
                         //   height: 20,
                         // )
                         Container(
+                          width: MediaQuery.of(context).size.width*.85,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.amber.shade300.withOpacity(0.4),
@@ -78,24 +84,38 @@ class _Student_pageState extends State<Student_page> {
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Column(
-                              // crossAxisAlignment:
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               //     widget.email == data['Email']
                               //         ? CrossAxisAlignment.end
                               //         : CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  data['Notice'] ?? "",
+                                  data['Notice Title'] ?? "",
                                   style: TextStyle(
-                                    fontSize: 18,
+                                      fontSize: 16,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  data['Notice Details'] ?? "",
+                                  style: TextStyle(
+                                    fontSize: 16,
                                     fontStyle: FontStyle.normal,
                                   ),
                                 ),
+                                SizedBox(
+                                  height: 5,
+                                ),
                                 Text(
-                                  data['NoticeTime']
-                                      .toString()
-                                      .substring(0, 19),
+                                  'Date:' +
+                                      data['Notice Time']
+                                          .toString()
+                                          .substring(0, 19),
                                   style: TextStyle(
-                                    fontSize: 10,
+                                    fontSize: 12,
                                     fontStyle: FontStyle.italic,
                                   ),
                                 ),
@@ -246,7 +266,7 @@ class _Student_pageState extends State<Student_page> {
               // ...
             },
           ),
-           ListTile(
+          ListTile(
             title: const Text('     Notice'),
             onTap: () {
               // Update the state of the app.

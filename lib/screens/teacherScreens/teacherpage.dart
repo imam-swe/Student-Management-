@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 import 'package:i_school/messages/chat_room_all.dart';
+import 'package:i_school/screens/items/addnotice.dart';
 import 'package:i_school/screens/homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,8 @@ class Teacher_page extends StatefulWidget {
 
 class _Teacher_pageState extends State<Teacher_page> {
   //late String notice;
-  TextEditingController noticecontroller = TextEditingController();
+  // TextEditingController noticetitle = TextEditingController();
+  // //TextEditingController noticedetails
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
@@ -89,88 +91,74 @@ class _Teacher_pageState extends State<Teacher_page> {
             SliverPadding(
               padding: const EdgeInsets.all(20),
               sliver: SliverGrid.count(
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 5,
                 crossAxisCount: 2,
                 children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: Center(child: const Text("Result")),
-                    decoration: BoxDecoration(
-                        color: Colors.green[100],
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(0.5),
-                    child: Center(
-                      //child: const Text('Notice'),
-                      child: Column(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.notification_add),
-                          Expanded(
-                            child: TextField(
-                              controller: noticecontroller,
-                              decoration: InputDecoration(
-                                labelText: 'Add a Notice',
-                              ),
-                              keyboardType: TextInputType.multiline,
-                              maxLines: null,
-                              // onChanged: (input) {
-                              //   setState(
-                              //     () {
-                              //       notice = input;
-                              //     },
-                              //   );
-                              // },
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              firestore.collection('Test').add(
-                                {
-                                  'NoticeTime': DateTime.now().toString(),
-                                  'Notice': noticecontroller.text,
-                                },
-                              );
-                              noticecontroller.clear();
-                            },
-                            icon: Icon(Icons.send),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                        ],
-                      ),
+                  // ElevatedButton(
+                  //   style: ElevatedButton.styleFrom(
+                  //     primary: Colors.green[100],
+                  //   ),
+                  //   child: Text("Result"),
+                  //   onPressed: () {},
+                  // ),
+                   InkWell(
+                    child: Container(
+                      //padding: const EdgeInsets.all(8),
+                      child: Center(child: const Text('Results')),
+                      decoration: BoxDecoration(
+                          color: Colors.green[300],
+                          borderRadius: BorderRadius.circular(8)),
                     ),
-                    decoration: BoxDecoration(
-                        color: Colors.yellow[100],
-                        borderRadius: BorderRadius.circular(8)),
+                    onTap: () {
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) => AddNotice()));
+                    },
+                  ),
+                  
+                   InkWell(
+                    child: Container(
+                      //padding: const EdgeInsets.all(8),
+                      child: Center(child: const Text('Add Notice')),
+                      decoration: BoxDecoration(
+                          color: Colors.green[300],
+                          borderRadius: BorderRadius.circular(8)),
+                    ),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => AddNotice()));
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      //padding: const EdgeInsets.all(8),
+                      child: Center(child: const Text('Class Routine')),
+                      decoration: BoxDecoration(
+                          color: Colors.green[300],
+                          borderRadius: BorderRadius.circular(8)),
+                    ),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => AddNotice()));
+                    },
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
-                    child: Center(child: const Text('Class Routine')),
-                    decoration: BoxDecoration(
-                        color: Colors.green[300],
-                        borderRadius: BorderRadius.circular(8)),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: Center(child: const Text('Who scream')),
+                    child: Center(child: const Text('Student List')),
                     decoration: BoxDecoration(
                         color: Colors.green[400],
                         borderRadius: BorderRadius.circular(8)),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
-                    child: Center(child: const Text('Revolution is coming...')),
+                    child: Center(child: const Text('Classes')),
                     decoration: BoxDecoration(
                         color: Colors.green[500],
                         borderRadius: BorderRadius.circular(8)),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
-                    child: Center(child: const Text('Revolution, they...')),
+                    child: Center(child: const Text('Live Class')),
                     decoration: BoxDecoration(
                         color: Colors.green[600],
                         borderRadius: BorderRadius.circular(8)),
@@ -183,7 +171,7 @@ class _Teacher_pageState extends State<Teacher_page> {
       ),
     );
   }
-
+  
   Widget MyDrawerList() {
     return Container(
       padding: EdgeInsets.only(
@@ -229,14 +217,14 @@ class _Teacher_pageState extends State<Teacher_page> {
               // ...
             },
           ),
-           ListTile(
+          ListTile(
             title: const Text('     Routine'),
             onTap: () {
               // Update the state of the app.
               // ...
             },
           ),
-           ListTile(
+          ListTile(
             title: const Text('     Live Class'),
             onTap: () {
               // Update the state of the app.

@@ -5,6 +5,8 @@ import 'package:i_school/screens/studentScreens/student_info.dart';
 import 'package:i_school/screens/teacherScreens/teacher_info.dart';
 // import 'package:i_school/screens/teacherScreens/teacherpage.dart';
 
+import 'package:google_sign_in/google_sign_in.dart';
+
 // import 'package:i_school/users/userDetection.dart';
 // import 'package:firebase_core/firebase_core.dart';
 
@@ -21,6 +23,9 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   late final bool users;
   _SignupScreenState(bool users) {
